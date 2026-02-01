@@ -1,0 +1,54 @@
+/**
+ * Ankh Focus Ring Component Styles
+ * Keyboard focus indicator for interactive elements
+ * Follows M3 focus ring specifications
+ */
+
+ankh-focus-ring {
+  display: contents;
+}
+
+.ankh-focus-ring {
+  /* Positioning - matches parent size */
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ankh-focus-ring-radius, inherit);
+
+  /* Non-interactive overlay */
+  pointer-events: none;
+
+  /* Focus ring styling - M3 spec: 3px ring with 2px offset */
+  outline: 3px solid var(--ankh-focus-ring-color, var(--color-secondary, #625b71));
+  outline-offset: 2px;
+
+  /* Hidden by default */
+  opacity: 0;
+
+  /* Animation */
+  transition:
+    opacity var(--duration-short2, 100ms) var(--easing-standard, ease);
+}
+
+/* Visible state */
+.ankh-focus-ring--visible {
+  opacity: 1;
+}
+
+/* Inward variant - renders inside element boundary */
+.ankh-focus-ring--inward {
+  outline-offset: -5px;
+}
+
+/* Accessibility: ensure visibility in forced colors mode */
+@media (forced-colors: active) {
+  .ankh-focus-ring--visible {
+    outline: 3px solid CanvasText;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .ankh-focus-ring {
+    transition: none;
+  }
+}

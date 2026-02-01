@@ -1,0 +1,196 @@
+/**
+ * Ankh Button Component Styles
+ * Uses @ankh-studio/themes for theming
+ */
+
+/* Host element */
+.ankh-btn-host {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.ankh-btn-host[full-width] {
+  display: flex;
+  width: 100%;
+}
+
+.ankh-btn {
+  /* Base styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 8px);
+
+  /* Positioning for ripple/focus-ring */
+  position: relative;
+
+  /* Typography */
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-size: var(--font-size-2, 12px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--line-height-2, 16px);
+  letter-spacing: var(--letter-spacing-1, 0.0025em);
+  text-decoration: none;
+
+  /* Shape */
+  border-radius: var(--radius-full, 9999px);
+  border: none;
+
+  /* Interaction */
+  cursor: var(--cursor-pointer, pointer);
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Transitions */
+  transition:
+    background-color var(--duration-short4, 200ms) var(--easing-standard, ease),
+    box-shadow var(--duration-short4, 200ms) var(--easing-standard, ease),
+    color var(--duration-short4, 200ms) var(--easing-standard, ease);
+
+  /* Variant colors - set by variant classes */
+  background-color: var(--_bg);
+  color: var(--_fg);
+  box-shadow: var(--_shadow);
+
+  /* Ripple inherits state layer color */
+  --ankh-ripple-hover-color: var(--_state-layer);
+  --ankh-ripple-pressed-color: var(--_state-layer);
+
+  /* Child components inherit border radius */
+  --ankh-focus-ring-radius: var(--radius-full, 9999px);
+  --ankh-ripple-radius: var(--radius-full, 9999px);
+}
+
+/* Child components - remove from flex flow */
+.ankh-btn > ankh-focus-ring,
+.ankh-btn > ankh-ripple {
+  display: contents;
+}
+
+/* Button content wrapper - ensures content is above ripple */
+.ankh-btn__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+/* Disabled state - M3 spec: container 0.1 opacity, content 0.38 opacity */
+.ankh-btn:disabled {
+  cursor: var(--cursor-not-allowed, not-allowed);
+  pointer-events: none;
+  background-color: color-mix(in oklch, var(--_disabled-container, var(--color-on-surface, oklch(10% 0 0deg))) 10%, transparent);
+  color: color-mix(in oklch, var(--_disabled-content, var(--color-on-surface, oklch(10% 0 0deg))) 38%, transparent);
+  box-shadow: none;
+}
+
+.ankh-btn:disabled .ankh-btn__content {
+  opacity: 1; /* Content opacity handled by color-mix above */
+}
+
+/* Hover/Focus/Active states - shared pattern using variant colors */
+.ankh-btn:hover:not(:disabled) {
+  background-color: color-mix(in oklch, var(--_bg), var(--_state-layer) 8%);
+  box-shadow: var(--_shadow-hover);
+}
+
+.ankh-btn:focus-visible:not(:disabled) {
+  background-color: color-mix(in oklch, var(--_bg), var(--_state-layer) 10%);
+}
+
+.ankh-btn:active:not(:disabled) {
+  background-color: color-mix(in oklch, var(--_bg), var(--_state-layer) 10%);
+  box-shadow: var(--_shadow-active);
+}
+
+/* ========================================
+   Variants
+   ======================================== */
+
+/* Filled - Primary */
+.ankh-btn--filled {
+  --_bg: var(--color-primary, oklch(35% 0 0deg));
+  --_fg: var(--color-on-primary, oklch(100% 0 0deg));
+  --_state-layer: var(--color-on-primary, oklch(100% 0 0deg));
+  --_shadow: var(--shadow-0, none);
+  --_shadow-hover: var(--shadow-1, 0 1px 3px rgb(0 0 0 / 0.2));
+  --_shadow-active: var(--shadow-0, none);
+}
+
+/* Outlined */
+.ankh-btn--outlined {
+  --_bg: transparent;
+  --_fg: var(--color-primary, oklch(35% 0 0deg));
+  --_state-layer: var(--color-primary, oklch(35% 0 0deg));
+  --_shadow: var(--shadow-0, none);
+  --_shadow-hover: var(--shadow-0, none);
+  --_shadow-active: var(--shadow-0, none);
+
+  border: 1px solid var(--color-outline, oklch(50% 0 0deg));
+}
+
+.ankh-btn--outlined:hover:not(:disabled) {
+  border-color: var(--color-primary, oklch(35% 0 0deg));
+}
+
+/* Text */
+.ankh-btn--text {
+  --_bg: transparent;
+  --_fg: var(--color-primary, oklch(35% 0 0deg));
+  --_state-layer: var(--color-primary, oklch(35% 0 0deg));
+  --_shadow: var(--shadow-0, none);
+  --_shadow-hover: var(--shadow-0, none);
+  --_shadow-active: var(--shadow-0, none);
+}
+
+/* Elevated */
+.ankh-btn--elevated {
+  --_bg: var(--color-surface-container, oklch(96% 0 0deg));
+  --_fg: var(--color-primary, oklch(35% 0 0deg));
+  --_state-layer: var(--color-primary, oklch(35% 0 0deg));
+  --_shadow: var(--shadow-1, 0 1px 3px rgb(0 0 0 / 0.2));
+  --_shadow-hover: var(--shadow-2, 0 2px 6px rgb(0 0 0 / 0.2));
+  --_shadow-active: var(--shadow-1, 0 1px 3px rgb(0 0 0 / 0.2));
+}
+
+/* Tonal */
+.ankh-btn--tonal {
+  --_bg: var(--color-secondary-container, oklch(88% 0 0deg));
+  --_fg: var(--color-on-secondary-container, oklch(20% 0 0deg));
+  --_state-layer: var(--color-on-secondary-container, oklch(20% 0 0deg));
+  --_shadow: var(--shadow-0, none);
+  --_shadow-hover: var(--shadow-1, 0 1px 3px rgb(0 0 0 / 0.2));
+  --_shadow-active: var(--shadow-0, none);
+}
+
+/* ========================================
+   Sizes
+   ======================================== */
+
+.ankh-btn--small {
+  height: calc(32px * var(--scaling, 1));
+  padding: 0 var(--space-3, 12px);
+  font-size: var(--font-size-1, 11px);
+}
+
+.ankh-btn--medium {
+  height: calc(40px * var(--scaling, 1));
+  padding: 0 var(--space-5, 24px);
+}
+
+.ankh-btn--large {
+  height: calc(56px * var(--scaling, 1));
+  padding: 0 var(--space-6, 32px);
+  font-size: var(--font-size-3, 14px);
+}
+
+/* ========================================
+   Modifiers
+   ======================================== */
+
+.ankh-btn--full-width {
+  width: 100%;
+}
