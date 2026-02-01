@@ -26,7 +26,7 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
     needs: bump-version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
 
@@ -82,7 +82,7 @@ jobs:
     needs: bump-version
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: GitHub Release
         uses: softprops/action-gh-release@v2
