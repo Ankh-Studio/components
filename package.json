@@ -6,7 +6,7 @@
   "license": "MIT",
   "author": {
     "name": "Matthew Van Dusen",
-    "url": "https://github.com/matthewvandusen"
+    "url": "https://github.com/imagineux"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ankh-studio/components.git"
+    "url": "git+https://github.com/Ankh-Studio/components.git"
   },
   "engines": {
     "node": ">=20"
@@ -73,7 +73,7 @@
     "vitest": "^4.0.18"
   },
   "dependencies": {
-    "@ankh-studio/themes": "^0.1.0",
+    "@ankh-studio/themes": "^0.1.3",
     "clsx": "^2.1.1"
   }
 }
