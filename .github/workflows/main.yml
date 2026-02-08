@@ -16,8 +16,12 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yml
 
-  build:
+  test:
     needs: lint
+    uses: ./.github/workflows/test.yml
+
+  build:
+    needs: test
     uses: ./.github/workflows/build.yml
 
   bump-version:
@@ -32,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: 'lts/*'
 
       - name: Configure git
         run: |
@@ -56,6 +60,9 @@ jobs:
   publish:
     needs: bump-version
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -63,7 +70,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: 'lts/*'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
@@ -74,9 +81,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
 
   release:
     needs: bump-version
