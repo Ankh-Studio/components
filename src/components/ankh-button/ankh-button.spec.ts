@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { createElement, createContainer } from '../../test-utils';
+import { createElement, createContainer } from '@/test-utils';
 import './ankh-button.js';
 
 describe('ankh-button', () => {

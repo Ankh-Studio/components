@@ -5,7 +5,7 @@ import {
   waitForHydration,
   polyfillAnimate,
   wait,
-} from '../../test-utils';
+} from '@/test-utils';
 import './ankh-ripple.js';
 
 describe('ankh-ripple', () => {

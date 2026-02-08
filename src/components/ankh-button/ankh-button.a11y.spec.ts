@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { axe } from 'vitest-axe';
-import { createElement, createContainer } from '../../test-utils';
+import '@/test-utils/a11y';
+import { createElement, createContainer } from '@/test-utils';
 import './ankh-button.js';
 
 describe('ankh-button accessibility', () => {

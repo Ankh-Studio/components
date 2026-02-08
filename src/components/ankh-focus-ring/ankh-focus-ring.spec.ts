@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { createElement, createContainer, waitForHydration } from '../../test-utils';
+import { createElement, createContainer, waitForHydration } from '@/test-utils';
 import './ankh-focus-ring.js';
 
 describe('ankh-focus-ring', () => {

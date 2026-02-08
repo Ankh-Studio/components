@@ -5,7 +5,7 @@
 
 ## Context
 
-We're building a web component library on Stencil (≥ 4.12) that consumes `@ankh-studio/tokens` for structure and `@ankh-studio/themes` for color. The tokens ADR ([001-design-intentions](../../../tokens/docs/adr/001-design-intentions.md)) establishes cognitive contexts (Expressive, Focus, Intense). The themes ADR ([001-themes-architecture](../../../themes/docs/adr/001-themes-architecture.md)) establishes themes as a composable color layer with the cascade order `@layer reset, tokens, intention, palette, base`.
+We're building a web component library on Stencil (≥ 4.12) that consumes `@ankh-studio/tokens` for structure and `@ankh-studio/themes` for color. The tokens ADR ([001-design-intentions](https://github.com/Ankh-Studio/tokens/blob/main/docs/adr/001-design-intentions.md)) establishes cognitive contexts (Expressive, Focus, Intense). The themes ADR ([001-themes-architecture](https://github.com/Ankh-Studio/themes/blob/main/docs/adr/001-themes-architecture.md)) establishes themes as a composable color layer with the cascade order `@layer reset, tokens, intention, palette, base`.
 
 Components sit on top of both. They need to:
 
