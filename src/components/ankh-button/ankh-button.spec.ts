@@ -1,27 +1,24 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { createElement, createContainer } from '@/test-utils';
 import './ankh-button.js';
 
 describe('ankh-button', () => {
   let container: HTMLDivElement;
+  let cleanup: () => void;
 
   const createButton = async (attrs: Record<string, string> = {}, content = '') => {
-    const el = document.createElement('ankh-button');
-    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
-    if (content) el.textContent = content;
-    container.appendChild(el);
-    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const el = await createElement<HTMLElement>('ankh-button', container, attrs, content || undefined);
     const button = el.querySelector('button');
     if (!button) throw new Error('button element not found');
     return { el, button };
   };
 
   beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
+    ({ container, cleanup } = createContainer());
   });
 
   afterEach(() => {
-    container.remove();
+    cleanup();
   });
 
   describe('default rendering', () => {

@@ -50,15 +50,22 @@ export const polyfillAnimate = (mockAnimation = createMockAnimation()) => {
 };
 
 /**
+ * Alias for waitForHydration — common name in test harnesses.
+ */
+export const flush = waitForHydration;
+
+/**
  * Creates a component element with attributes and appends it to a container
  */
 export const createElement = async <T extends HTMLElement>(
   tag: string,
   container: HTMLElement,
-  attrs: Record<string, string> = {}
+  attrs: Record<string, string> = {},
+  content?: string,
 ): Promise<T> => {
   const el = document.createElement(tag) as T;
   Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+  if (content) el.textContent = content;
   container.appendChild(el);
   await waitForHydration();
   return el;

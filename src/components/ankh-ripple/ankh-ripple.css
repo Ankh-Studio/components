@@ -3,72 +3,74 @@
  * Touch feedback ripple effect for interactive elements
  */
 
-ankh-ripple {
-  display: contents;
-}
-
-.ankh-ripple {
-  /* Positioning */
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: var(--ankh-ripple-radius, inherit);
-
-  /* Non-interactive overlay */
-  pointer-events: none;
-  -webkit-tap-highlight-color: transparent;
-
-  /* Custom properties with defaults (3-level fallback) */
-  --_hover-color: var(--ankh-ripple-hover-color, var(--color-on-surface, currentColor));
-  --_hover-opacity: var(--ankh-ripple-hover-opacity, 0.08);
-  --_pressed-color: var(--ankh-ripple-pressed-color, var(--color-on-surface, currentColor));
-  --_pressed-opacity: var(--ankh-ripple-pressed-opacity, 0.12);
-}
-
-/* Hover state layer - ::before pseudo-element */
-.ankh-ripple::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background-color: var(--_hover-color);
-  opacity: 0;
-  transition: opacity 15ms linear, background-color 15ms linear;
-}
-
-.ankh-ripple--hovered::before {
-  opacity: var(--_hover-opacity);
-}
-
-/* Press ripple - ::after pseudo-element */
-.ankh-ripple::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    var(--_pressed-color) max(calc(100% - 70px), 65%),
-    transparent 100%
-  );
-  opacity: 0;
-  transform-origin: center center;
-}
-
-.ankh-ripple--pressed::after {
-  opacity: var(--_pressed-opacity);
-}
-
-/* Accessibility: hide in forced colors mode */
-@media (forced-colors: active) {
-  .ankh-ripple {
-    display: none;
+@layer components {
+  ankh-ripple {
+    display: contents;
   }
-}
 
-/* Respect reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  .ankh-ripple::before,
+  .ankh-ripple {
+    /* Positioning */
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: var(--ankh-ripple-radius, inherit);
+
+    /* Non-interactive overlay */
+    pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
+
+    /* Custom properties with defaults (3-level fallback) */
+    --_hover-color: var(--ankh-ripple-hover-color, var(--color-on-surface, currentColor));
+    --_hover-opacity: var(--ankh-ripple-hover-opacity, 0.08);
+    --_pressed-color: var(--ankh-ripple-pressed-color, var(--color-on-surface, currentColor));
+    --_pressed-opacity: var(--ankh-ripple-pressed-opacity, 0.12);
+  }
+
+  /* Hover state layer - ::before pseudo-element */
+  .ankh-ripple::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--_hover-color);
+    opacity: 0;
+    transition: opacity 15ms linear, background-color 15ms linear;
+  }
+
+  .ankh-ripple--hovered::before {
+    opacity: var(--_hover-opacity);
+  }
+
+  /* Press ripple - ::after pseudo-element */
   .ankh-ripple::after {
-    transition: none;
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      var(--_pressed-color) max(calc(100% - 70px), 65%),
+      transparent 100%
+    );
+    opacity: 0;
+    transform-origin: center center;
+  }
+
+  .ankh-ripple--pressed::after {
+    opacity: var(--_pressed-opacity);
+  }
+
+  /* Accessibility: hide in forced colors mode */
+  @media (forced-colors: active) {
+    .ankh-ripple {
+      display: none;
+    }
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .ankh-ripple::before,
+    .ankh-ripple::after {
+      transition: none;
+    }
   }
 }

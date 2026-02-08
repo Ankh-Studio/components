@@ -1,25 +1,23 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { createElement, createContainer, waitForHydration } from '@/test-utils';
 import './ankh-focus-ring.js';
 
 describe('ankh-focus-ring', () => {
   let container: HTMLButtonElement;
+  let cleanup: () => void;
 
   const createFocusRing = async (attrs: Record<string, string> = {}) => {
-    const el = document.createElement('ankh-focus-ring');
-    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
-    container.appendChild(el);
-    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const el = await createElement<HTMLElement>('ankh-focus-ring', container, attrs);
     const ring = el.querySelector('.ankh-focus-ring') as HTMLElement | null;
     return { el, ring, parent: container };
   };
 
   beforeEach(() => {
-    container = document.createElement('button');
-    document.body.appendChild(container);
+    ({ container, cleanup } = createContainer('button'));
   });
 
   afterEach(() => {
-    container.remove();
+    cleanup();
   });
 
   describe('rendering', () => {
@@ -73,14 +71,14 @@ describe('ankh-focus-ring', () => {
     it('hides ring on focusout', async () => {
       const { ring, parent } = await createFocusRing({ visible: 'true' });
       parent.dispatchEvent(new FocusEvent('focusout', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(ring?.classList.contains('ankh-focus-ring--visible')).toBe(false);
     });
 
     it('hides ring on pointerdown', async () => {
       const { ring, parent } = await createFocusRing({ visible: 'true' });
       parent.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(ring?.classList.contains('ankh-focus-ring--visible')).toBe(false);
     });
 
@@ -93,7 +91,7 @@ describe('ankh-focus-ring', () => {
       });
 
       parent.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
 
       expect(ring?.classList.contains('ankh-focus-ring--visible')).toBe(true);
       expect(el.hasAttribute('visible')).toBe(true);
@@ -108,7 +106,7 @@ describe('ankh-focus-ring', () => {
       });
 
       parent.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
 
       expect(ring?.classList.contains('ankh-focus-ring--visible')).toBe(false);
     });
