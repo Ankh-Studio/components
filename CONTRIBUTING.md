@@ -20,6 +20,18 @@ npm test        # Run tests
 npm run lint    # Check code style
 ```
 
+## Testing
+
+We use [vitest](https://vitest.dev/) with [happy-dom](https://github.com/nicedayfor/happy-dom) for unit tests.
+
+```bash
+npm test            # Run all tests once (CI mode)
+npm run test:watch  # Run in watch mode during development
+npm run test:ui     # Open the vitest UI
+```
+
+Test files live alongside components as `*.spec.ts` or `*.test.ts` files in `src/components/ankh-{name}/`. Every component should have tests covering its props, events, and rendered output. Tests run automatically in CI on every pull request and must pass before merge.
+
 ## Making Changes
 
 1. Create a branch from `main`
