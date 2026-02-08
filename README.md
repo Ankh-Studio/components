@@ -1,5 +1,7 @@
 # @ankh-studio/components
 
+[![Tests](https://github.com/Ankh-Studio/components/actions/workflows/main.yml/badge.svg)](https://github.com/Ankh-Studio/components/actions/workflows/main.yml)
+
 Web Components built with Stencil.js for the Ankh Studio design system.
 
 Built on [@ankh-studio/themes](https://github.com/ankh-studio/themes) - pre-composed CSS themes that include design tokens, reset, and base styles.
