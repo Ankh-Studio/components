@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="55" failures="0" errors="0" time="0.55952576">
+    <testsuite name="src/components/ankh-button/ankh-button.spec.ts" timestamp="2026-02-08T19:57:35.322Z" hostname="DESKTOP-K4SKV0E" tests="25" failures="0" errors="0" skipped="0" time="0.024706656">
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; default rendering &gt; renders with filled variant by default" time="0.007040871">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; default rendering &gt; renders with medium size by default" time="0.001260538">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; default rendering &gt; renders with type=&quot;button&quot; by default" time="0.000954688">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; default rendering &gt; renders host with ankh-btn-host class" time="0.000737106">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; default rendering &gt; renders content wrapper span" time="0.000707228">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; sub-components &gt; includes ankh-focus-ring" time="0.000674616">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; sub-components &gt; includes ankh-ripple" time="0.000607901">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; sub-components &gt; propagates disabled state to ankh-ripple" time="0.000883645">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; sub-components &gt; does not disable ripple when button is enabled" time="0.000727524">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; slot content &gt; renders text content in slot" time="0.00098993">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; variant prop &gt; applies ankh-btn--filled class for variant=&quot;undefined&quot;" time="0.000526065">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; variant prop &gt; applies ankh-btn--outlined class for variant=&quot;undefined&quot;" time="0.000561409">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; variant prop &gt; applies ankh-btn--text class for variant=&quot;undefined&quot;" time="0.000559321">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; variant prop &gt; applies ankh-btn--elevated class for variant=&quot;undefined&quot;" time="0.000666021">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; variant prop &gt; applies ankh-btn--tonal class for variant=&quot;undefined&quot;" time="0.000775066">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; size prop &gt; applies ankh-btn--small class for size=&quot;undefined&quot;" time="0.000640976">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; size prop &gt; applies ankh-btn--medium class for size=&quot;undefined&quot;" time="0.000450341">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; size prop &gt; applies ankh-btn--large class for size=&quot;undefined&quot;" time="0.000521088">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; type prop &gt; sets type=&quot;button&quot; on native button" time="0.000757543">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; type prop &gt; sets type=&quot;submit&quot; on native button" time="0.000606004">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; type prop &gt; sets type=&quot;reset&quot; on native button" time="0.000578252">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; disabled prop &gt; disables native button when disabled=&quot;true&quot;" time="0.000638246">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; disabled prop &gt; enables native button when disabled is not set" time="0.000585103">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; full-width prop &gt; applies full-width class when full-width=&quot;true&quot;" time="0.00057588">
+        </testcase>
+        <testcase classname="src/components/ankh-button/ankh-button.spec.ts" name="ankh-button &gt; full-width prop &gt; does not apply full-width class by default" time="0.000576021">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/ankh-ripple/ankh-ripple.spec.ts" timestamp="2026-02-08T19:57:35.327Z" hostname="DESKTOP-K4SKV0E" tests="17" failures="0" errors="0" skipped="0" time="0.520970861">
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; rendering &gt; sets aria-hidden=&quot;true&quot; for accessibility" time="0.00522305">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; rendering &gt; renders surface element with ankh-ripple class" time="0.000974829">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; rendering &gt; reflects disabled attribute when set" time="0.00099391">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; hover behavior &gt; adds hovered class on pointerenter" time="0.001275374">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; hover behavior &gt; removes hovered class on pointerleave" time="0.000982985">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; hover behavior &gt; does not add hovered class when disabled" time="0.000642201">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (mouse/pen) &gt; adds pressed class on pointerdown" time="0.000769706">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (mouse/pen) &gt; does not respond to non-primary pointer" time="0.000528296">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (mouse/pen) &gt; does not add pressed class when disabled" time="0.000639674">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (mouse/pen) &gt; calls animate API when pressed" time="0.000774719">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (touch) &gt; does not immediately press on touch (has delay)" time="0.000525579">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; press behavior (touch) &gt; resets state on pointercancel" time="0.251547257">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; click behavior &gt; does not add pressed class on click when disabled" time="0.000722545">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; click behavior &gt; handles keyboard activation (click without pointer) without error" time="0.000738546">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; context menu &gt; resets hover state on contextmenu" time="0.000701495">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; context menu &gt; cancels animation on contextmenu" time="0.251996449">
+        </testcase>
+        <testcase classname="src/components/ankh-ripple/ankh-ripple.spec.ts" name="ankh-ripple &gt; lifecycle &gt; detaches listeners on disconnect" time="0.000857419">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" timestamp="2026-02-08T19:57:35.329Z" hostname="DESKTOP-K4SKV0E" tests="13" failures="0" errors="0" skipped="0" time="0.013848243">
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; rendering &gt; sets aria-hidden=&quot;true&quot; for accessibility" time="0.005094281">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; rendering &gt; renders ring element with ankh-focus-ring class" time="0.000917007">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; rendering &gt; ring is not visible by default" time="0.000684615">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; visible prop &gt; shows ring when visible=&quot;true&quot;" time="0.000747751">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; visible prop &gt; reflects visible attribute on host" time="0.000515231">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; inward prop &gt; applies inward class when inward=&quot;true&quot;" time="0.000524234">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; inward prop &gt; reflects inward attribute on host" time="0.000400847">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; inward prop &gt; does not apply inward class by default" time="0.000388099">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; focus behavior &gt; hides ring on focusout" time="0.00104158">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; focus behavior &gt; hides ring on pointerdown" time="0.000692145">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; focus behavior &gt; shows ring on focusin when parent matches :focus-visible" time="0.000898201">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; focus behavior &gt; does not show ring on focusin when parent does not match :focus-visible" time="0.000361696">
+        </testcase>
+        <testcase classname="src/components/ankh-focus-ring/ankh-focus-ring.spec.ts" name="ankh-focus-ring &gt; lifecycle &gt; detaches listeners on disconnect" time="0.000654919">
+        </testcase>
+    </testsuite>
+</testsuites>

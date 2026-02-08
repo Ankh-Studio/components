@@ -1,44 +1,35 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import {
+  createElement,
+  createContainer,
+  waitForHydration,
+  polyfillAnimate,
+  wait,
+} from '../../test-utils';
 import './ankh-ripple.js';
-
-const mockAnimation = {
-  cancel: vi.fn(),
-  finish: vi.fn(),
-  play: vi.fn(),
-  pause: vi.fn(),
-  onfinish: null,
-  oncancel: null,
-  finished: Promise.resolve(),
-};
 
 describe('ankh-ripple', () => {
   let container: HTMLDivElement;
-  let originalAnimate: typeof Element.prototype.animate | undefined;
+  let cleanup: () => void;
+  let mockAnimation: ReturnType<typeof polyfillAnimate>['mockAnimation'];
+  let restoreAnimate: () => void;
 
   const createRipple = async (attrs: Record<string, string> = {}) => {
-    const el = document.createElement('ankh-ripple');
-    Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
-    container.appendChild(el);
-    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const el = await createElement<HTMLElement>('ankh-ripple', container, attrs);
     const surface = el.querySelector('.ankh-ripple') as HTMLElement | null;
     return { el, surface, parent: container };
   };
 
   beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-    originalAnimate = Element.prototype.animate;
-    Element.prototype.animate = vi.fn().mockReturnValue(mockAnimation) as typeof Element.prototype.animate;
+    ({ container, cleanup } = createContainer());
+    const animate = polyfillAnimate();
+    mockAnimation = animate.mockAnimation;
+    restoreAnimate = animate.restore;
   });
 
   afterEach(() => {
-    container.remove();
-    if (originalAnimate) {
-      Element.prototype.animate = originalAnimate;
-    } else {
-      // @ts-expect-error - deleting non-standard property
-      delete Element.prototype.animate;
-    }
+    cleanup();
+    restoreAnimate();
     vi.clearAllMocks();
   });
 
@@ -64,23 +55,23 @@ describe('ankh-ripple', () => {
     it('adds hovered class on pointerenter', async () => {
       const { surface, parent } = await createRipple();
       parent.dispatchEvent(new PointerEvent('pointerenter', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--hovered')).toBe(true);
     });
 
     it('removes hovered class on pointerleave', async () => {
       const { surface, parent } = await createRipple();
       parent.dispatchEvent(new PointerEvent('pointerenter', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       parent.dispatchEvent(new PointerEvent('pointerleave', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--hovered')).toBe(false);
     });
 
     it('does not add hovered class when disabled', async () => {
       const { surface, parent } = await createRipple({ disabled: 'true' });
       parent.dispatchEvent(new PointerEvent('pointerenter', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--hovered')).toBe(false);
     });
   });
@@ -91,7 +82,7 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: true, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(true);
     });
 
@@ -100,7 +91,7 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: false, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(false);
     });
 
@@ -109,7 +100,7 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: true, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(false);
     });
 
@@ -118,7 +109,7 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: true, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(Element.prototype.animate).toHaveBeenCalled();
     });
   });
@@ -137,12 +128,12 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: true, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(true);
 
       parent.dispatchEvent(new PointerEvent('pointercancel', { bubbles: true }));
-      await new Promise((r) => setTimeout(r, 250));
-      await new Promise((r) => requestAnimationFrame(r));
+      await wait(250);
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(false);
     });
   });
@@ -151,7 +142,7 @@ describe('ankh-ripple', () => {
     it('does not add pressed class on click when disabled', async () => {
       const { surface, parent } = await createRipple({ disabled: 'true' });
       parent.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--pressed')).toBe(false);
     });
 
@@ -167,11 +158,11 @@ describe('ankh-ripple', () => {
     it('resets hover state on contextmenu', async () => {
       const { surface, parent } = await createRipple();
       parent.dispatchEvent(new PointerEvent('pointerenter', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--hovered')).toBe(true);
 
       parent.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true }));
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
       expect(surface?.classList.contains('ankh-ripple--hovered')).toBe(false);
     });
 
@@ -181,10 +172,10 @@ describe('ankh-ripple', () => {
       parent.dispatchEvent(
         new PointerEvent('pointerdown', { bubbles: true, isPrimary: true, pointerType: 'mouse' })
       );
-      await new Promise((r) => requestAnimationFrame(r));
+      await waitForHydration();
 
       parent.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true }));
-      await new Promise((r) => setTimeout(r, 250));
+      await wait(250);
 
       expect(mockAnimation.cancel).toHaveBeenCalled();
     });
