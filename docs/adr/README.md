@@ -16,6 +16,7 @@ This directory contains Architecture Decision Records (ADRs) for @ankh-studio/co
 | ADR | Title | Status |
 |-----|-------|--------|
 | [001](./001-design-intentions.md) | Design Intentions Layer System | Proposed |
+| [002](./002-icon-rendering-strategy.md) | Icon Rendering Strategy | Accepted |
 
 ## Creating an ADR
 
