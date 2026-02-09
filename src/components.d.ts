@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { ButtonSize, ButtonVariant } from "./components/ankh-button/ankh-button";
+import { IconSize } from "./components/ankh-icon/ankh-icon";
 export { ButtonSize, ButtonVariant } from "./components/ankh-button/ankh-button";
+export { IconSize } from "./components/ankh-icon/ankh-icon";
 export namespace Components {
     interface AnkhButton {
         /**
@@ -47,6 +49,26 @@ export namespace Components {
          */
         "visible": boolean;
     }
+    interface AnkhIcon {
+        /**
+          * Whether to render the filled variant of the icon. Controls the FILL axis of the Material Symbols variable font.
+          * @default false
+         */
+        "filled": boolean;
+        /**
+          * Accessible label for meaningful icons. When provided: sets role="img" and aria-label. When omitted: icon is treated as decorative (aria-hidden="true").
+         */
+        "label"?: string;
+        /**
+          * Icon name from Material Symbols (e.g. "home", "settings", "favorite"). Uses ligature resolution — the name is rendered as text content and the Material Symbols font converts it to the corresponding glyph.
+         */
+        "name": string;
+        /**
+          * The rendered size of the icon. Maps to --icon-size-sm/md/lg/xl tokens with optical size tracking.
+          * @default 'md'
+         */
+        "size": IconSize;
+    }
     interface AnkhRipple {
         /**
           * Whether the ripple effect is disabled
@@ -68,6 +90,12 @@ declare global {
         prototype: HTMLAnkhFocusRingElement;
         new (): HTMLAnkhFocusRingElement;
     };
+    interface HTMLAnkhIconElement extends Components.AnkhIcon, HTMLStencilElement {
+    }
+    var HTMLAnkhIconElement: {
+        prototype: HTMLAnkhIconElement;
+        new (): HTMLAnkhIconElement;
+    };
     interface HTMLAnkhRippleElement extends Components.AnkhRipple, HTMLStencilElement {
     }
     var HTMLAnkhRippleElement: {
@@ -77,6 +105,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "ankh-button": HTMLAnkhButtonElement;
         "ankh-focus-ring": HTMLAnkhFocusRingElement;
+        "ankh-icon": HTMLAnkhIconElement;
         "ankh-ripple": HTMLAnkhRippleElement;
     }
 }
@@ -120,6 +149,26 @@ declare namespace LocalJSX {
          */
         "visible"?: boolean;
     }
+    interface AnkhIcon {
+        /**
+          * Whether to render the filled variant of the icon. Controls the FILL axis of the Material Symbols variable font.
+          * @default false
+         */
+        "filled"?: boolean;
+        /**
+          * Accessible label for meaningful icons. When provided: sets role="img" and aria-label. When omitted: icon is treated as decorative (aria-hidden="true").
+         */
+        "label"?: string;
+        /**
+          * Icon name from Material Symbols (e.g. "home", "settings", "favorite"). Uses ligature resolution — the name is rendered as text content and the Material Symbols font converts it to the corresponding glyph.
+         */
+        "name": string;
+        /**
+          * The rendered size of the icon. Maps to --icon-size-sm/md/lg/xl tokens with optical size tracking.
+          * @default 'md'
+         */
+        "size"?: IconSize;
+    }
     interface AnkhRipple {
         /**
           * Whether the ripple effect is disabled
@@ -130,6 +179,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ankh-button": AnkhButton;
         "ankh-focus-ring": AnkhFocusRing;
+        "ankh-icon": AnkhIcon;
         "ankh-ripple": AnkhRipple;
     }
 }
@@ -139,6 +189,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ankh-button": LocalJSX.AnkhButton & JSXBase.HTMLAttributes<HTMLAnkhButtonElement>;
             "ankh-focus-ring": LocalJSX.AnkhFocusRing & JSXBase.HTMLAttributes<HTMLAnkhFocusRingElement>;
+            "ankh-icon": LocalJSX.AnkhIcon & JSXBase.HTMLAttributes<HTMLAnkhIconElement>;
             "ankh-ripple": LocalJSX.AnkhRipple & JSXBase.HTMLAttributes<HTMLAnkhRippleElement>;
         }
     }
