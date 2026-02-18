@@ -51,7 +51,9 @@
     "lint": "npm run lint:ts && npm run lint:css",
     "lint:ts": "eslint src/",
     "lint:css": "stylelint 'src/**/*.css'",
-    "lint:fix": "eslint src/ --fix && stylelint 'src/**/*.css' --fix"
+    "lint:fix": "eslint src/ --fix && stylelint 'src/**/*.css' --fix",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run test"
   },
   "devDependencies": {
     "@stencil-community/postcss": "^2.2.0",

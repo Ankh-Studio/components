@@ -6,9 +6,8 @@ import { createElement, createContainer } from '../../test-utils';
 import './ankh-icon.js';
 
 declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Assertion<T> extends AxeMatchers {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface AsymmetricMatchersContaining extends AxeMatchers {}
 }
 

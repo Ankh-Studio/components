@@ -16,6 +16,7 @@
 
   /* Material Symbols base — component sets the family per ADR-002;
      consumer loads the @font-face, we just reference it here. */
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword -- icon font, not text */
   font-family: 'Material Symbols Outlined';
   font-variation-settings: 'FILL' var(--_fill), 'wght' 400, 'GRAD' 0, 'opsz' var(--_opsz);
 
@@ -30,12 +31,12 @@
   letter-spacing: normal;
   text-transform: none;
   white-space: nowrap;
-  word-wrap: normal;
+  overflow-wrap: normal;
   direction: ltr;
   flex-shrink: 0;
 
   /* Color: inherit from parent, never hardcoded */
-  color: currentColor;
+  color: currentcolor;
 
   /* Interaction */
   user-select: none;
@@ -43,7 +44,7 @@
   /* Font rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   font-feature-settings: 'liga';
 }
 
@@ -55,21 +56,25 @@
 
 .ankh-icon--sm {
   font-size: var(--icon-size-sm, 18px);
+
   --_opsz: 20; /* Clamped from 18 to axis minimum 20 */
 }
 
 .ankh-icon--md {
   font-size: var(--icon-size-md, 24px);
+
   --_opsz: 24;
 }
 
 .ankh-icon--lg {
   font-size: var(--icon-size-lg, 36px);
+
   --_opsz: 40;
 }
 
 .ankh-icon--xl {
   font-size: var(--icon-size-xl, 48px);
+
   --_opsz: 48;
 }
 
