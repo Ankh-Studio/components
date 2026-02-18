@@ -39,6 +39,7 @@ Components require a theme from `@ankh-studio/themes`:
 | Component | Description |
 |-----------|-------------|
 | `<ankh-button>` | Button with variants: filled, outlined, text, elevated, tonal |
+| `<ankh-icon>` | Icon using Material Symbols font, with size and fill variants |
 | `<ankh-focus-ring>` | Focus indicator for keyboard navigation |
 | `<ankh-ripple>` | Material-style ripple effect |
 
@@ -54,6 +55,26 @@ Components require a theme from `@ankh-studio/themes`:
 <ankh-button variant="elevated">Elevated</ankh-button>
 <ankh-button variant="tonal">Tonal</ankh-button>
 ```
+
+### Icon
+
+```html
+<ankh-icon name="home"></ankh-icon>
+<ankh-icon name="favorite" filled></ankh-icon>
+<ankh-icon name="settings" size="lg"></ankh-icon>
+<ankh-icon name="delete" label="Delete item"></ankh-icon>
+```
+
+> Requires the [Material Symbols Outlined](https://fonts.google.com/icons) font to be loaded by the consumer.
+
+#### Icon Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Material Symbols icon name (required) |
+| `size` | `sm` \| `md` \| `lg` \| `xl` | `md` | Rendered size |
+| `filled` | `boolean` | `false` | Use the filled variant |
+| `label` | `string` | — | Accessible label; omit for decorative icons |
 
 #### Button Props
 
@@ -73,6 +94,16 @@ Components work in any framework. For better DX, use Stencil's output targets:
 - **Angular**: `@stencil/angular-output-target`
 - **Vue**: `@stencil/vue-output-target`
 
+## Versioning
+
+This package follows [SemVer](https://semver.org/). The public API surface includes component tag names, props, events, CSS custom properties, and slots.
+
+- **Patch** – bug fixes that don't change public behaviour
+- **Minor** – new components, props, events, or slots (backwards-compatible)
+- **Major** – renamed/removed tags, props, events, or breaking behavioural changes
+
+Every PR must declare its SemVer impact using the PR template checklist.
+
 ## Browser Support
 
 Requires browsers supporting:
@@ -89,7 +120,16 @@ Requires browsers supporting:
 
 ## Changelog
 
-### 0.1.0-alpha
+### 0.1.2
+
+- Add `ankh-icon` component with Material Symbols font rendering
+- Add accessibility tests with `vitest-axe`
+
+### 0.1.1
+
+- Bug fixes and CI improvements
+
+### 0.1.0
 
 - Initial release with button, focus-ring, ripple components
 
