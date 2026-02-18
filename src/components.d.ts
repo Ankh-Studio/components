@@ -176,6 +176,22 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
     }
+
+    interface AnkhButtonAttributes {
+        "variant": ButtonVariant;
+        "size": ButtonSize;
+        "fullWidth": boolean;
+        "disabled": boolean;
+        "type": 'button' | 'submit' | 'reset';
+    }
+    interface AnkhFocusRingAttributes {
+        "visible": boolean;
+        "inward": boolean;
+    }
+    interface AnkhRippleAttributes {
+        "disabled": boolean;
+    }
+
     interface IntrinsicElements {
         "ankh-button": AnkhButton;
         "ankh-focus-ring": AnkhFocusRing;

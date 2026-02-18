@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@stencil-community/postcss": "^2.2.0",
-    "@stencil/core": "^4.27.1",
+    "@stencil/core": "^4.42.1",
     "@stencil/eslint-plugin": "^1.1.0",
     "@types/node": "^25.1.0",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
