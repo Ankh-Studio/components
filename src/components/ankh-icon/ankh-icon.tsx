@@ -46,7 +46,7 @@ export class AnkhIcon {
     return (
       <Host class="ankh-icon-host">
         <span
-          class={cn('ankh-icon', 'material-symbols-outlined', `ankh-icon--${this.size}`, this.filled && 'ankh-icon--filled')}
+          class={cn('ankh-icon', `ankh-icon--${this.size}`, this.filled && 'ankh-icon--filled')}
           role={isDecorative ? undefined : 'img'}
           aria-label={this.label || undefined}
           aria-hidden={isDecorative ? 'true' : undefined}

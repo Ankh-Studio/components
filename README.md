@@ -67,6 +67,15 @@ Components require a theme from `@ankh-studio/themes`:
 
 > Requires the [Material Symbols Outlined](https://fonts.google.com/icons) font to be loaded by the consumer.
 
+#### Icon Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `name` | `string` | — | Material Symbols icon name (required) |
+| `size` | `sm` \| `md` \| `lg` \| `xl` | `md` | Rendered size |
+| `filled` | `boolean` | `false` | Use the filled variant |
+| `label` | `string` | — | Accessible label; omit for decorative icons |
+
 #### Button Props
 
 | Prop | Type | Default | Description |
@@ -84,6 +93,16 @@ Components work in any framework. For better DX, use Stencil's output targets:
 - **React**: `@stencil/react-output-target`
 - **Angular**: `@stencil/angular-output-target`
 - **Vue**: `@stencil/vue-output-target`
+
+## Versioning
+
+This package follows [SemVer](https://semver.org/). The public API surface includes component tag names, props, events, CSS custom properties, and slots.
+
+- **Patch** – bug fixes that don't change public behaviour
+- **Minor** – new components, props, events, or slots (backwards-compatible)
+- **Major** – renamed/removed tags, props, events, or breaking behavioural changes
+
+Every PR must declare its SemVer impact using the PR template checklist.
 
 ## Browser Support
 
@@ -103,7 +122,7 @@ Requires browsers supporting:
 
 ### 0.1.0-alpha
 
-- Initial release with button, focus-ring, ripple components
+- Initial release with button, icon, focus-ring, ripple components
 
 ## License
 

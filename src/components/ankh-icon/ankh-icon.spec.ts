@@ -27,12 +27,6 @@ describe('ankh-icon', () => {
       expect(span!.classList.contains('ankh-icon')).toBe(true);
     });
 
-    it('renders with material-symbols-outlined class', async () => {
-      const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home' });
-      const span = el.querySelector('span.ankh-icon');
-      expect(span!.classList.contains('material-symbols-outlined')).toBe(true);
-    });
-
     it('renders the icon name as text content', async () => {
       const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'settings' });
       const span = el.querySelector('span.ankh-icon');
@@ -77,7 +71,6 @@ describe('ankh-icon', () => {
       const el = await createElement<HTMLElement>('ankh-icon', container, { name: '' });
       const span = el.querySelector('span.ankh-icon');
       expect(span!.classList.contains('ankh-icon')).toBe(true);
-      expect(span!.classList.contains('material-symbols-outlined')).toBe(true);
       expect(span!.classList.contains('ankh-icon--md')).toBe(true);
     });
 
@@ -190,11 +183,10 @@ describe('ankh-icon', () => {
   });
 
   describe('class composition', () => {
-    it('always includes ankh-icon and material-symbols-outlined', async () => {
+    it('always includes ankh-icon base class', async () => {
       const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', size: 'sm', filled: 'true' });
       const span = el.querySelector('span.ankh-icon');
       expect(span!.classList.contains('ankh-icon')).toBe(true);
-      expect(span!.classList.contains('material-symbols-outlined')).toBe(true);
     });
 
     it('composes size, filled, and base classes correctly', async () => {
@@ -202,10 +194,9 @@ describe('ankh-icon', () => {
       const span = el.querySelector('span.ankh-icon');
       const classes = Array.from(span!.classList);
       expect(classes).toContain('ankh-icon');
-      expect(classes).toContain('material-symbols-outlined');
       expect(classes).toContain('ankh-icon--lg');
       expect(classes).toContain('ankh-icon--filled');
-      expect(classes).toHaveLength(4);
+      expect(classes).toHaveLength(3);
     });
   });
 });
