@@ -110,6 +110,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     interface AnkhButton {
         /**
           * Whether the button is disabled
@@ -188,25 +190,31 @@ declare namespace LocalJSX {
         "visible": boolean;
         "inward": boolean;
     }
+    interface AnkhIconAttributes {
+        "name": string;
+        "size": IconSize;
+        "filled": boolean;
+        "label": string;
+    }
     interface AnkhRippleAttributes {
         "disabled": boolean;
     }
 
     interface IntrinsicElements {
-        "ankh-button": AnkhButton;
-        "ankh-focus-ring": AnkhFocusRing;
-        "ankh-icon": AnkhIcon;
-        "ankh-ripple": AnkhRipple;
+        "ankh-button": Omit<AnkhButton, keyof AnkhButtonAttributes> & { [K in keyof AnkhButton & keyof AnkhButtonAttributes]?: AnkhButton[K] } & { [K in keyof AnkhButton & keyof AnkhButtonAttributes as `attr:${K}`]?: AnkhButtonAttributes[K] } & { [K in keyof AnkhButton & keyof AnkhButtonAttributes as `prop:${K}`]?: AnkhButton[K] };
+        "ankh-focus-ring": Omit<AnkhFocusRing, keyof AnkhFocusRingAttributes> & { [K in keyof AnkhFocusRing & keyof AnkhFocusRingAttributes]?: AnkhFocusRing[K] } & { [K in keyof AnkhFocusRing & keyof AnkhFocusRingAttributes as `attr:${K}`]?: AnkhFocusRingAttributes[K] } & { [K in keyof AnkhFocusRing & keyof AnkhFocusRingAttributes as `prop:${K}`]?: AnkhFocusRing[K] };
+        "ankh-icon": Omit<AnkhIcon, keyof AnkhIconAttributes> & { [K in keyof AnkhIcon & keyof AnkhIconAttributes]?: AnkhIcon[K] } & { [K in keyof AnkhIcon & keyof AnkhIconAttributes as `attr:${K}`]?: AnkhIconAttributes[K] } & { [K in keyof AnkhIcon & keyof AnkhIconAttributes as `prop:${K}`]?: AnkhIcon[K] } & OneOf<"name", AnkhIcon["name"], AnkhIconAttributes["name"]>;
+        "ankh-ripple": Omit<AnkhRipple, keyof AnkhRippleAttributes> & { [K in keyof AnkhRipple & keyof AnkhRippleAttributes]?: AnkhRipple[K] } & { [K in keyof AnkhRipple & keyof AnkhRippleAttributes as `attr:${K}`]?: AnkhRippleAttributes[K] } & { [K in keyof AnkhRipple & keyof AnkhRippleAttributes as `prop:${K}`]?: AnkhRipple[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "ankh-button": LocalJSX.AnkhButton & JSXBase.HTMLAttributes<HTMLAnkhButtonElement>;
-            "ankh-focus-ring": LocalJSX.AnkhFocusRing & JSXBase.HTMLAttributes<HTMLAnkhFocusRingElement>;
-            "ankh-icon": LocalJSX.AnkhIcon & JSXBase.HTMLAttributes<HTMLAnkhIconElement>;
-            "ankh-ripple": LocalJSX.AnkhRipple & JSXBase.HTMLAttributes<HTMLAnkhRippleElement>;
+            "ankh-button": LocalJSX.IntrinsicElements["ankh-button"] & JSXBase.HTMLAttributes<HTMLAnkhButtonElement>;
+            "ankh-focus-ring": LocalJSX.IntrinsicElements["ankh-focus-ring"] & JSXBase.HTMLAttributes<HTMLAnkhFocusRingElement>;
+            "ankh-icon": LocalJSX.IntrinsicElements["ankh-icon"] & JSXBase.HTMLAttributes<HTMLAnkhIconElement>;
+            "ankh-ripple": LocalJSX.IntrinsicElements["ankh-ripple"] & JSXBase.HTMLAttributes<HTMLAnkhRippleElement>;
         }
     }
 }
