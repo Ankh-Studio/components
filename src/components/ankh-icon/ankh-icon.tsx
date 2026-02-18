@@ -6,6 +6,8 @@ import { cn } from '@/utils';
  */
 export type IconSize = 'sm' | 'md' | 'lg' | 'xl';
 
+const VALID_SIZES: readonly IconSize[] = ['sm', 'md', 'lg', 'xl'];
+
 @Component({
   tag: 'ankh-icon',
   styleUrl: 'ankh-icon.css',
@@ -41,14 +43,16 @@ export class AnkhIcon {
   @Prop() label?: string;
 
   render() {
-    const isDecorative = !this.label;
+    const normalizedLabel = this.label?.trim();
+    const isDecorative = !normalizedLabel;
+    const size = VALID_SIZES.includes(this.size) ? this.size : 'md';
 
     return (
       <Host class="ankh-icon-host">
         <span
-          class={cn('ankh-icon', `ankh-icon--${this.size}`, this.filled && 'ankh-icon--filled')}
+          class={cn('ankh-icon', `ankh-icon--${size}`, this.filled && 'ankh-icon--filled')}
           role={isDecorative ? undefined : 'img'}
-          aria-label={this.label || undefined}
+          aria-label={normalizedLabel || undefined}
           aria-hidden={isDecorative ? 'true' : undefined}
         >
           {this.name}

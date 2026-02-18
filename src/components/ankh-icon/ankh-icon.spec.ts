@@ -89,6 +89,19 @@ describe('ankh-icon', () => {
       expect(span!.classList.contains(`ankh-icon--${size}`)).toBe(true);
     });
 
+    it('falls back to md for an invalid size value', async () => {
+      const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', size: 'huge' });
+      const span = el.querySelector('span.ankh-icon')!;
+      expect(span.classList.contains('ankh-icon--md')).toBe(true);
+      expect(span.classList.contains('ankh-icon--huge')).toBe(false);
+    });
+
+    it('falls back to md when size is set to empty string', async () => {
+      const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', size: '' });
+      const span = el.querySelector('span.ankh-icon')!;
+      expect(span.classList.contains('ankh-icon--md')).toBe(true);
+    });
+
     it('only applies one size class at a time', async () => {
       const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', size: 'lg' });
       const span = el.querySelector('span.ankh-icon');
@@ -157,6 +170,23 @@ describe('ankh-icon', () => {
       const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', label: 'Home' });
       const span = el.querySelector('span.ankh-icon');
       expect(span!.hasAttribute('aria-hidden')).toBe(false);
+    });
+  });
+
+  describe('accessibility — whitespace-only labels', () => {
+    it('treats whitespace-only label as decorative', async () => {
+      const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', label: '   ' });
+      const span = el.querySelector('span.ankh-icon')!;
+      expect(span.getAttribute('aria-hidden')).toBe('true');
+      expect(span.hasAttribute('role')).toBe(false);
+      expect(span.hasAttribute('aria-label')).toBe(false);
+    });
+
+    it('trims label with leading/trailing whitespace', async () => {
+      const el = await createElement<HTMLElement>('ankh-icon', container, { name: 'home', label: '  Home  ' });
+      const span = el.querySelector('span.ankh-icon')!;
+      expect(span.getAttribute('role')).toBe('img');
+      expect(span.getAttribute('aria-label')).toBe('Home');
     });
   });
 
