@@ -14,7 +14,9 @@
   --_fill: 0;
   --_opsz: 24;
 
-  /* Material Symbols base */
+  /* Material Symbols base — component sets the family per ADR-002;
+     consumer loads the @font-face, we just reference it here. */
+  font-family: 'Material Symbols Outlined';
   font-variation-settings: 'FILL' var(--_fill), 'wght' 400, 'GRAD' 0, 'opsz' var(--_opsz);
 
   /* Default size maps to md token */

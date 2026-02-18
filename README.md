@@ -39,6 +39,7 @@ Components require a theme from `@ankh-studio/themes`:
 | Component | Description |
 |-----------|-------------|
 | `<ankh-button>` | Button with variants: filled, outlined, text, elevated, tonal |
+| `<ankh-icon>` | Icon using Material Symbols font, with size and fill variants |
 | `<ankh-focus-ring>` | Focus indicator for keyboard navigation |
 | `<ankh-ripple>` | Material-style ripple effect |
 
@@ -54,6 +55,17 @@ Components require a theme from `@ankh-studio/themes`:
 <ankh-button variant="elevated">Elevated</ankh-button>
 <ankh-button variant="tonal">Tonal</ankh-button>
 ```
+
+### Icon
+
+```html
+<ankh-icon name="home"></ankh-icon>
+<ankh-icon name="favorite" filled></ankh-icon>
+<ankh-icon name="settings" size="lg"></ankh-icon>
+<ankh-icon name="delete" label="Delete item"></ankh-icon>
+```
+
+> Requires the [Material Symbols Outlined](https://fonts.google.com/icons) font to be loaded by the consumer.
 
 #### Button Props
 

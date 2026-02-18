@@ -71,6 +71,18 @@ This pattern avoids the common pitfall where `.ankh-icon--filled` would accident
 - **No build-time name validation.** Typos in icon names render as blank text. The component does not ship a name registry; correctness is a consumer responsibility.
 - **Single font style (Outlined) for v1.** If `Rounded` or `Sharp` styles are needed, a `style` prop can be added in a follow-up without breaking changes.
 
+## Shadow DOM Decision
+
+`ankh-icon` uses `shadow: false` (light DOM rendering). Three factors drive this choice:
+
+1. **Token cascade access.** The component's CSS references `--icon-size-*` custom properties from `@ankh-studio/tokens`. In light DOM, these custom properties flow in through the normal cascade without requiring `::part()` forwarding or CSS variable re-declaration on a shadow host.
+
+2. **Consumer styling flexibility.** With light DOM, the component's classes (`ankh-icon`, `ankh-icon--md`, etc.) are directly targetable with standard CSS selectors. Consumers can extend or override styles without shadow-piercing workarounds.
+
+3. **Font inheritance.** The component sets `font-family: 'Material Symbols Outlined'` on the inner span. Because `@font-face` declarations are scoped to the document, a shadow root would not inherit the font unless the consumer duplicated the `@font-face` rule inside it or the component self-bundled the font. Light DOM avoids this entirely.
+
+This is consistent with all other components in the system (`ankh-button`, `ankh-focus-ring`, `ankh-ripple`), which also use `shadow: false` for the same cascade and theming reasons.
+
 ## Open Questions
 
 - [ ] Should we provide a `@ankh-studio/icons` package that bundles/re-exports the Material Symbols font CSS?
