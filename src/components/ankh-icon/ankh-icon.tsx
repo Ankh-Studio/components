@@ -45,7 +45,15 @@ export class AnkhIcon {
   render() {
     const normalizedLabel = this.label?.trim();
     const isDecorative = !normalizedLabel;
-    const size = VALID_SIZES.includes(this.size) ? this.size : 'md';
+    const validSize = VALID_SIZES.includes(this.size);
+
+    if (!validSize) {
+      console.warn(
+        `[ankh-icon] Invalid size "${this.size}" — falling back to "md". Expected one of: ${VALID_SIZES.join(', ')}`,
+      );
+    }
+
+    const size = validSize ? this.size : 'md';
 
     return (
       <Host class="ankh-icon-host">
