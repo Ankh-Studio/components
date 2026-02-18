@@ -120,9 +120,18 @@ Requires browsers supporting:
 
 ## Changelog
 
-### 0.1.0-alpha
+### 0.1.2
 
-- Initial release with button, icon, focus-ring, ripple components
+- Add `ankh-icon` component with Material Symbols font rendering
+- Add accessibility tests with `vitest-axe`
+
+### 0.1.1
+
+- Bug fixes and CI improvements
+
+### 0.1.0
+
+- Initial release with button, focus-ring, ripple components
 
 ## License
 

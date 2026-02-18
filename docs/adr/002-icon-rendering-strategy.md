@@ -85,5 +85,5 @@ This is consistent with all other components in the system (`ankh-button`, `ankh
 
 ## Open Questions
 
-- [ ] Should we provide a `@ankh-studio/icons` package that bundles/re-exports the Material Symbols font CSS?
+- [x] Should we provide a `@ankh-studio/icons` package that bundles/re-exports the Material Symbols font CSS? — **Resolved:** `@ankh-studio/icons` exists with `icons.css` and vendored WOFF2.
 - [ ] Should `weight` and `grade` be exposed as props? (Deferred — keep API minimal for v1.)

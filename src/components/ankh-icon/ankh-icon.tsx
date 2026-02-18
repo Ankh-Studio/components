@@ -43,16 +43,19 @@ export class AnkhIcon {
   @Prop() label?: string;
 
   render() {
-    const normalizedLabel = this.label?.trim();
-    const isDecorative = !normalizedLabel;
-    const validSize = VALID_SIZES.includes(this.size);
+    if (!this.name) {
+      console.warn('[ankh-icon] Missing required "name" prop.');
+    }
 
+    const validSize = VALID_SIZES.includes(this.size);
     if (!validSize) {
       console.warn(
         `[ankh-icon] Invalid size "${this.size}" — falling back to "md". Expected one of: ${VALID_SIZES.join(', ')}`,
       );
     }
 
+    const normalizedLabel = this.label?.trim();
+    const isDecorative = !normalizedLabel;
     const size = validSize ? this.size : 'md';
 
     return (
